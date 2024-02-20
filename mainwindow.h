@@ -42,10 +42,11 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    bool turnLeft=false, turnRight=false;
 };
 
 class InputDialog : public QDialog
@@ -54,6 +55,20 @@ class InputDialog : public QDialog
 
 public:
     explicit InputDialog(QWidget *parent = nullptr);
+
+    int getX();
+    int getY();
+
+private:
+    QLineEdit *xInput, *yInput;
+};
+
+class InputDialogrb : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit InputDialogrb(QWidget *parent = nullptr);
 
     int getX();
     int getY();

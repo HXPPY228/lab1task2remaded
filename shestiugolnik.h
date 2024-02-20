@@ -1,15 +1,26 @@
-#ifndef KRUG_H
-#define KRUG_H
+#ifndef SHESTIUGOLNIK_H
+#define SHESTIUGOLNIK_H
 
-#include <QGraphicsEllipseItem>
+#include <QGraphicsPolygonItem>
 #include <QBrush>
 
-class Krug : public QGraphicsEllipseItem
+class Shestiugolnik : public QGraphicsPolygonItem
 {
 public:
-    Krug(qreal x,qreal y, qreal diametr) : QGraphicsEllipseItem(x,y,diametr,diametr)
+    Shestiugolnik(int x, QGraphicsItem* parent = nullptr)
+        : QGraphicsPolygonItem(parent)
     {
+
+        QPolygonF hex;
         setBrush(Qt::green);
+
+        hex << QPoint(-x, 0)
+             << QPoint(-x/2, -0.866*x)
+             << QPoint(x/2, -0.866*x)
+             << QPoint(x, 0)
+            << QPoint(x/2, 0.866*x)
+            << QPoint(-x/2, 0.866*x);
+        setPolygon(hex);
         setFlag(QGraphicsItem::ItemIsMovable);
 
         QPolygon rhombus;
@@ -24,4 +35,4 @@ public:
     }
 };
 
-#endif // KRUG_H
+#endif // SHESTIUGOLNIK_H

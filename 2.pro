@@ -16,7 +16,10 @@ HEADERS += \
     krug.h \
     mainwindow.h \
     mykvadrat.h \
-    myrectangle.h
+    myrectangle.h \
+    romb.h \
+    shestiugolnik.h \
+    treugolnik.h
 
 FORMS += \
     mainwindow.ui

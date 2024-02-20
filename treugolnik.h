@@ -1,14 +1,20 @@
-#ifndef KRUG_H
-#define KRUG_H
+#ifndef TREUGOLNIK_H
+#define TREUGOLNIK_H
 
-#include <QGraphicsEllipseItem>
+#include <QGraphicsPolygonItem>
 #include <QBrush>
 
-class Krug : public QGraphicsEllipseItem
+class Treugolnik : public QGraphicsPolygonItem
 {
 public:
-    Krug(qreal x,qreal y, qreal diametr) : QGraphicsEllipseItem(x,y,diametr,diametr)
+    Treugolnik(int x, QGraphicsItem* parent = nullptr)
+        : QGraphicsPolygonItem(parent)
     {
+        QPolygon triangle;
+        triangle << QPoint(-x/2, 0.2887*x)
+                 << QPoint(x/2, 0.2887*x)
+                 << QPoint(0, -x*0.577);
+        setPolygon(triangle);
         setBrush(Qt::green);
         setFlag(QGraphicsItem::ItemIsMovable);
 
@@ -24,4 +30,4 @@ public:
     }
 };
 
-#endif // KRUG_H
+#endif // TREUGOLNIK_H

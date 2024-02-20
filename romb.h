@@ -1,15 +1,24 @@
-#ifndef KRUG_H
-#define KRUG_H
+#ifndef ROMB_H
+#define ROMB_H
 
-#include <QGraphicsEllipseItem>
+#include <QGraphicsPolygonItem>
 #include <QBrush>
 
-class Krug : public QGraphicsEllipseItem
+class Romb : public QGraphicsPolygonItem
 {
 public:
-    Krug(qreal x,qreal y, qreal diametr) : QGraphicsEllipseItem(x,y,diametr,diametr)
+    Romb(int x, int y, QGraphicsItem* parent = nullptr)
+        : QGraphicsPolygonItem(parent)
     {
+
+        QPolygonF romb;
         setBrush(Qt::green);
+
+        romb << QPoint(0, -y/2)
+                 << QPoint(x/2, 0)
+                 << QPoint(0, y/2)
+                 << QPoint(-x/2, 0);
+        setPolygon(romb);
         setFlag(QGraphicsItem::ItemIsMovable);
 
         QPolygon rhombus;
@@ -24,4 +33,4 @@ public:
     }
 };
 
-#endif // KRUG_H
+#endif // ROMB_H
