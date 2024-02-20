@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "krug.h"
+#include "myrectangle.h"
+#include "mykvadrat.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
+
 }
 
 MainWindow::~MainWindow()
@@ -73,7 +77,7 @@ int InputDialogkv::getX()
 
 void MainWindow::on_pushButton_clicked()
 {
-    scene->clear();
+    //scene->clear();
     if (ui->comboBox->currentIndex() == 1)
     {
         int x=0;

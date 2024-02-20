@@ -13,7 +13,10 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    mainwindow.h
+    krug.h \
+    mainwindow.h \
+    mykvadrat.h \
+    myrectangle.h
 
 FORMS += \
     mainwindow.ui
