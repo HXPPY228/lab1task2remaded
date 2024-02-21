@@ -58,10 +58,18 @@ private slots:
 
     void on_pushButton_vpravo_released();
 
+    void on_pushButton_plus_pressed();
+
+    void on_pushButton_plus_released();
+
+    void on_pushButton_minus_pressed();
+
+    void on_pushButton_minus_released();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    QTimer *timer, *timer2, *timer3,*timer4, *timer5, *timer6;
+    QTimer *timer, *timer2, *timer3,*timer4, *timer5, *timer6,*timer7,*timer8;
 };
 
 #endif // MAINWINDOW_H

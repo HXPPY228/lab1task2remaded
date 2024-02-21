@@ -2,14 +2,14 @@
 
 MyRectangle::MyRectangle(int x, int y, QGraphicsPolygonItem* parent): Figure(parent)
 {
-    QPolygonF kv;
+    QPolygonF rect;
     setBrush(Qt::green);
 
-    kv << QPoint(-x/2, y/2)
+    rect << QPoint(-x/2, y/2)
        << QPoint(x/2, y/2)
        << QPoint(x/2, -y/2)
        << QPoint(-x/2, -y/2);
-    setPolygon(kv);
+    setPolygon(rect);
     setFlag(QGraphicsItem::ItemIsMovable);
 
     QPolygon rhombus;

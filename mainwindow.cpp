@@ -30,6 +30,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer5, SIGNAL(timeout()), this, SLOT(on_pushButton_vlevo_pressed()));
     timer6 = new QTimer(this);
     connect(timer6, SIGNAL(timeout()), this, SLOT(on_pushButton_vpravo_pressed()));
+    timer7 = new QTimer(this);
+    connect(timer7, SIGNAL(timeout()), this, SLOT(on_pushButton_plus_pressed()));
+    timer8 = new QTimer(this);
+    connect(timer8, SIGNAL(timeout()), this, SLOT(on_pushButton_minus_pressed()));
 }
 
 MainWindow::~MainWindow()
@@ -100,7 +104,6 @@ void MainWindow::on_pushButton_clicked()
             x=dialog.getX();
         }
         MyKvadrat* kv =new MyKvadrat(x);
-        kv ->setPos(0,0);
         scene->addItem(kv);
         QString S=QString::number(x*x), P = QString::number(x*4);
         ui->label->setText(S);
@@ -117,7 +120,6 @@ void MainWindow::on_pushButton_clicked()
             y=dialog.getY();
         }
         MyRectangle* rect =new MyRectangle(x,y);
-        rect ->setPos(0,0);
         scene->addItem(rect);
         QString S=QString::number(x*y), P = QString::number((x+y)*2);
         ui->label->setText(S);
@@ -271,5 +273,43 @@ void MainWindow::on_pushButton_vpravo_pressed()
 void MainWindow::on_pushButton_vpravo_released()
 {
     timer6->stop();
+}
+
+
+void MainWindow::on_pushButton_plus_pressed()
+{
+    QList<QGraphicsItem*> allItems = scene->items();
+    for (QGraphicsItem* item : allItems){
+        if (item->parentItem() == nullptr) {
+
+            item->setScale(item->scale() + 0.01);
+        }
+    }
+    timer7->start(10);
+}
+
+
+void MainWindow::on_pushButton_plus_released()
+{
+    timer7->stop();
+}
+
+
+void MainWindow::on_pushButton_minus_pressed()
+{
+    QList<QGraphicsItem*> allItems = scene->items();
+    for (QGraphicsItem* item : allItems){
+        if (item->parentItem() == nullptr) {
+
+            item->setScale(item->scale() - 0.01);
+        }
+    }
+    timer8->start(10);
+}
+
+
+void MainWindow::on_pushButton_minus_released()
+{
+    timer8->stop();
 }
 
