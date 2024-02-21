@@ -8,8 +8,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
+
+    QPixmap pixmap("/home/hxppy/Pictures/1646165847_1-abrakadabra-fun-p-list-v-kletku-na-prozrachnom-fone-1.jpg");
+    scene->setBackgroundBrush(pixmap);
+
     ui->graphicsView->setScene(scene);
-    scene->setBackgroundBrush(Qt::lightGray);
+
+
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -17,6 +22,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(on_pushButton_3_pressed()));
     timer2 = new QTimer(this);
     connect(timer2, SIGNAL(timeout()), this, SLOT(on_pushButton_4_pressed()));
+    timer3 = new QTimer(this);
+    connect(timer3, SIGNAL(timeout()), this, SLOT(on_pushButton_vverh_pressed()));
+    timer4 = new QTimer(this);
+    connect(timer4, SIGNAL(timeout()), this, SLOT(on_pushButton_vniz_pressed()));
+    timer5 = new QTimer(this);
+    connect(timer5, SIGNAL(timeout()), this, SLOT(on_pushButton_vlevo_pressed()));
+    timer6 = new QTimer(this);
+    connect(timer6, SIGNAL(timeout()), this, SLOT(on_pushButton_vpravo_pressed()));
 }
 
 MainWindow::~MainWindow()
@@ -187,4 +200,76 @@ void MainWindow::on_pushButton_4_released()
     timer2->stop();
 }
 
+
+
+void MainWindow::on_pushButton_vverh_pressed()
+{
+    QList<QGraphicsItem*> allItems = scene->items();
+    for (QGraphicsItem* item : allItems){
+        if (item->parentItem() == nullptr) {
+            item->setPos(item->pos().x(),item->pos().y()-1);
+        }
+    }
+    timer3->start(10);
+}
+
+
+void MainWindow::on_pushButton_vverh_released()
+{
+    timer3->stop();
+}
+
+
+void MainWindow::on_pushButton_vniz_pressed()
+{
+    QList<QGraphicsItem*> allItems = scene->items();
+    for (QGraphicsItem* item : allItems){
+        if (item->parentItem() == nullptr) {
+            item->setPos(item->pos().x(),item->pos().y()+1);
+        }
+    }
+    timer4->start(10);
+}
+
+
+void MainWindow::on_pushButton_vniz_released()
+{
+    timer4->stop();
+}
+
+
+void MainWindow::on_pushButton_vlevo_pressed()
+{
+    QList<QGraphicsItem*> allItems = scene->items();
+    for (QGraphicsItem* item : allItems){
+        if (item->parentItem() == nullptr) {
+            item->setPos(item->pos().x()-1,item->pos().y());
+        }
+    }
+    timer5->start(10);
+}
+
+
+void MainWindow::on_pushButton_vlevo_released()
+{
+    timer5->stop();
+}
+
+
+void MainWindow::on_pushButton_vpravo_pressed()
+{
+    QList<QGraphicsItem*> allItems = scene->items();
+    for (QGraphicsItem* item : allItems){
+        if (item->parentItem() == nullptr) {
+            item->setPos(item->pos().x()+1,item->pos().y());
+        }
+    }
+    timer6->start(10);
+}
+
+
+void MainWindow::on_pushButton_vpravo_released()
+{
+    timer6->stop();
+}
 
