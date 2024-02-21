@@ -4,23 +4,22 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
-#include <QDialog>
-#include <QLineEdit>
-#include <QVBoxLayout>
 #include <QPropertyAnimation>
-
+#include <QTimer>
+#include "inputdialogs.h"
+#include "krug.h"
+#include "myrectangle.h"
+#include "mykvadrat.h"
+#include "treugolnik.h"
+#include "romb.h"
+#include "shestiugolnik.h"
+#include "ellips.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
-
-class Figury
-{
-public:
-
-};
 
 class Mnogougolnik
 {
@@ -40,53 +39,17 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_3_pressed();
 
-    void on_pushButton_4_clicked();
+    void on_pushButton_3_released();
 
+    void on_pushButton_4_pressed();
+
+    void on_pushButton_4_released();
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    QTimer *timer, *timer2;
 };
 
-class InputDialog : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit InputDialog(QWidget *parent = nullptr);
-
-    int getX();
-    int getY();
-
-private:
-    QLineEdit *xInput, *yInput;
-};
-
-class InputDialogrb : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit InputDialogrb(QWidget *parent = nullptr);
-
-    int getX();
-    int getY();
-
-private:
-    QLineEdit *xInput, *yInput;
-};
-
-class InputDialogkv : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit InputDialogkv(QWidget *parent = nullptr);
-
-    int getX();
-
-private:
-    QLineEdit *xInput;
-};
 #endif // MAINWINDOW_H

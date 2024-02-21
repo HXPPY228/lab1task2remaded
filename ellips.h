@@ -1,25 +1,15 @@
-#ifndef ROMB_H
-#define ROMB_H
+#ifndef ELLIPS_H
+#define ELLIPS_H
 
-#include <QGraphicsPolygonItem>
+#include <QGraphicsEllipseItem>
 #include <QBrush>
 
-
-class Romb : public QGraphicsPolygonItem
+class Ellips : public QGraphicsEllipseItem
 {
 public:
-    Romb(int x, int y, QGraphicsItem* parent = nullptr)
-        : QGraphicsPolygonItem(parent)
+    Ellips(qreal x,qreal y, qreal diametr1, qreal diametr2) : QGraphicsEllipseItem(x,y,diametr1,diametr2)
     {
-
-        QPolygonF romb;
         setBrush(Qt::green);
-
-        romb << QPoint(0, -y/2)
-                 << QPoint(x/2, 0)
-                 << QPoint(0, y/2)
-                 << QPoint(-x/2, 0);
-        setPolygon(romb);
         setFlag(QGraphicsItem::ItemIsMovable);
 
         QPolygon rhombus;
@@ -34,4 +24,4 @@ public:
     }
 };
 
-#endif // ROMB_H
+#endif // ELLIPS_H

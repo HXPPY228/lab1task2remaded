@@ -9,10 +9,13 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    inputdialogs.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    ellips.h \
+    inputdialogs.h \
     krug.h \
     mainwindow.h \
     mykvadrat.h \

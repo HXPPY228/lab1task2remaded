@@ -1,11 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "krug.h"
-#include "myrectangle.h"
-#include "mykvadrat.h"
-#include "treugolnik.h"
-#include "romb.h"
-#include "shestiugolnik.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,6 +10,13 @@ MainWindow::MainWindow(QWidget *parent)
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
     scene->setBackgroundBrush(Qt::lightGray);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(on_pushButton_3_pressed()));
+    timer2 = new QTimer(this);
+    connect(timer2, SIGNAL(timeout()), this, SLOT(on_pushButton_4_pressed()));
 }
 
 MainWindow::~MainWindow()
@@ -22,95 +24,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-InputDialog::InputDialog(QWidget *parent) :
-    QDialog(parent),
-    xInput(new QLineEdit(this)),
-    yInput(new QLineEdit(this))
-{
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
-
-    QHBoxLayout *xLayout = new QHBoxLayout;
-    QLabel *xLabel = new QLabel("Введите значение x в пикселях: ", this);
-    xLayout->addWidget(xLabel);
-    xLayout->addWidget(xInput);
-    mainLayout->addLayout(xLayout);
-
-    QHBoxLayout *yLayout = new QHBoxLayout;
-    QLabel *yLabel = new QLabel("Введите значение y в пикселях: ", this);
-    yLayout->addWidget(yLabel);
-    yLayout->addWidget(yInput);
-    mainLayout->addLayout(yLayout);
-
-    QPushButton *button = new QPushButton("OK", this);
-    connect(button, SIGNAL(clicked()), this, SLOT(accept()));
-    mainLayout->addWidget(button);
-}
-
-InputDialogrb::InputDialogrb(QWidget *parent) :
-    QDialog(parent),
-    xInput(new QLineEdit(this)),
-    yInput(new QLineEdit(this))
-{
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
-
-    QHBoxLayout *xLayout = new QHBoxLayout;
-    QLabel *xLabel = new QLabel("Введите значение первой диагонали в пикселях: ", this);
-    xLayout->addWidget(xLabel);
-    xLayout->addWidget(xInput);
-    mainLayout->addLayout(xLayout);
-
-    QHBoxLayout *yLayout = new QHBoxLayout;
-    QLabel *yLabel = new QLabel("Введите значение второй диагонали в пикселях: ", this);
-    yLayout->addWidget(yLabel);
-    yLayout->addWidget(yInput);
-    mainLayout->addLayout(yLayout);
-
-    QPushButton *button = new QPushButton("OK", this);
-    connect(button, SIGNAL(clicked()), this, SLOT(accept()));
-    mainLayout->addWidget(button);
-}
-
-InputDialogkv::InputDialogkv(QWidget *parent) :
-    QDialog(parent),
-    xInput(new QLineEdit(this))
-{
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
-
-    QHBoxLayout *xLayout = new QHBoxLayout;
-    QLabel *xLabel = new QLabel("Введите значение стороны/диаметра(шара) в пикселях: ", this);
-    xLayout->addWidget(xLabel);
-    xLayout->addWidget(xInput);
-    mainLayout->addLayout(xLayout);
-
-    QPushButton *button = new QPushButton("OK", this);
-    connect(button, SIGNAL(clicked()), this, SLOT(accept()));
-    mainLayout->addWidget(button);
-}
-
-int InputDialog::getX()
-{
-    return xInput->text().toInt();
-}
-
-int InputDialog::getY()
-{
-    return yInput->text().toInt();
-}
-
-int InputDialogrb::getX()
-{
-    return xInput->text().toInt();
-}
-
-int InputDialogrb::getY()
-{
-    return yInput->text().toInt();
-}
-
-int InputDialogkv::getX()
-{
-    return xInput->text().toInt();
-}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -128,7 +41,9 @@ void MainWindow::on_pushButton_clicked()
 
         scene->addItem(triangle);
         QString S=QString::number(0.433*x*x), P = QString::number(3*x);
-        ui->label->setText("Площадь в пикселях: " + S + ". Периметр в пикселях: " + P + ". Центр масс треугольника помечен красной точкой. ");
+        ui->label->setText(S);
+        ui->label_4->setText(P);
+        ui->label_5->setText("Центр масс помечен красной точкой.");
     }
     else if (ui->comboBox->currentIndex() == 1)
     {
@@ -142,7 +57,9 @@ void MainWindow::on_pushButton_clicked()
         kv ->setPos(0,0);
         scene->addItem(kv);
         QString S=QString::number(3.1415*x*x/4), P = QString::number(3.1415*x);
-        ui->label->setText("Площадь в пикселях: " + S + ". Периметр в пикселях: " + P + ". Центр масс круга помечен красной точкой. ");
+        ui->label->setText(S);
+        ui->label_4->setText(P);
+        ui->label_5->setText("Центр масс помечен красной точкой.");
     }
     else if (ui->comboBox->currentIndex() == 2)
     {
@@ -157,7 +74,9 @@ void MainWindow::on_pushButton_clicked()
         romb ->setPos(0,0);
         scene->addItem(romb);
         QString S=QString::number(x*y/2), P = QString::number(sqrt(x*x+y*y)*2);
-        ui->label->setText("Площадь в пикселях: " + S + ". Периметр в пикселях: " + P + ". Центр масс ромба помечен красной точкой. ");
+        ui->label->setText(S);
+        ui->label_4->setText(P);
+        ui->label_5->setText("Центр масс помечен красной точкой.");
     }
     else if (ui->comboBox->currentIndex() == 3)
     {
@@ -171,7 +90,9 @@ void MainWindow::on_pushButton_clicked()
         kv ->setPos(0,0);
         scene->addItem(kv);
         QString S=QString::number(x*x), P = QString::number(x*4);
-        ui->label->setText("Площадь в пикселях: " + S + ". Периметр в пикселях: " + P + ". Центр масс квадрата помечен красной точкой. ");
+        ui->label->setText(S);
+        ui->label_4->setText(P);
+        ui->label_5->setText("Центр масс помечен красной точкой.");
     }
     else if (ui->comboBox->currentIndex() == 4)
     {
@@ -186,7 +107,9 @@ void MainWindow::on_pushButton_clicked()
         rect ->setPos(0,0);
         scene->addItem(rect);
         QString S=QString::number(x*y), P = QString::number((x+y)*2);
-        ui->label->setText("Площадь в пикселях: " + S + ". Периметр в пикселях: " + P + ". Центр масс прямоугольника помечен красной точкой. ");
+        ui->label->setText(S);
+        ui->label_4->setText(P);
+        ui->label_5->setText("Центр масс помечен красной точкой.");
     }
     else if (ui->comboBox->currentIndex() == 5)
     {
@@ -199,9 +122,30 @@ void MainWindow::on_pushButton_clicked()
         Shestiugolnik* hex =new Shestiugolnik(x);
         scene->addItem(hex);
         QString S=QString::number(2.598*x*x), P = QString::number(x*6);
-        ui->label->setText("Площадь в пикселях: " + S + ". Периметр в пикселях: " + P + ". Центр масс шестиугольника помечен красной точкой. ");
+        ui->label->setText(S);
+        ui->label_4->setText(P);
+        ui->label_5->setText("Центр масс помечен красной точкой.");
     }
+    else if (ui->comboBox->currentIndex() == 6)
+    {
 
+    }
+    else if (ui->comboBox->currentIndex() == 7)
+    {
+        int x=0,y=0;
+        InputDialogrb dialog(this);
+        if (dialog.exec()== QDialog::Accepted)
+        {
+            x=dialog.getX();
+            y=dialog.getY();
+        }
+        Ellips* el =new Ellips(-y/2,-x/2,y,x);
+        scene->addItem(el);
+        QString S=QString::number(3.1415*x/2*y/2), P = QString::number(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0)));
+        ui->label->setText(S);
+        ui->label_4->setText(P);
+        ui->label_5->setText("Центр масс помечен красной точкой.");
+    }
 }
 
 
@@ -209,21 +153,38 @@ void MainWindow::on_pushButton_2_clicked()
 {
     scene->clear();
     ui->label->setText("Очищено!");
+    ui->label_4->setText("Очищено!");
+    ui->label_5->setText("Очищено!");
 }
 
-void MainWindow::on_pushButton_3_clicked()
+
+
+void MainWindow::on_pushButton_3_pressed()
 {
     QList<QGraphicsItem*> allItems = scene->items();
     for (QGraphicsItem* item : allItems){
-        item->setRotation(item->rotation()-30);
+        item->setRotation(item->rotation()-1);
     }
+    timer->start(10);
 }
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_pushButton_3_released()
+{
+    timer->stop();
+}
+
+void MainWindow::on_pushButton_4_pressed()
 {
     QList<QGraphicsItem*> allItems = scene->items();
     for (QGraphicsItem* item : allItems){
-        item->setRotation(item->rotation()+30);
+        item->setRotation(item->rotation()+1);
     }
+    timer2->start(10);
 }
+
+void MainWindow::on_pushButton_4_released()
+{
+    timer2->stop();
+}
+
 
