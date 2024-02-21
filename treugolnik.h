@@ -1,17 +1,13 @@
 #ifndef TREUGOLNIK_H
 #define TREUGOLNIK_H
 
-#include <QGraphicsPolygonItem>
+#include "figure.h"
 #include <QBrush>
 
-class Treugolnik : public QGraphicsPolygonItem
+class Treugolnik : public Figure
 {
 public:
-    Treugolnik(int x, QGraphicsItem* parent = nullptr);
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) override
-    {
-        QGraphicsItem::mousePressEvent(event);
-    }
+    Treugolnik(int x, QGraphicsPolygonItem* parent = nullptr);
 };
 
 #endif // TREUGOLNIK_H

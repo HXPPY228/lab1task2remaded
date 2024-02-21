@@ -1,17 +1,13 @@
 #ifndef MYRECTANGLE_H
 #define MYRECTANGLE_H
 
-#include <QGraphicsRectItem>
+#include "figure.h"
 #include <QBrush>
 
-class MyRectangle : public QGraphicsRectItem
+class MyRectangle : public Figure
 {
 public:
-    MyRectangle(qreal x,qreal y, qreal width, qreal height);
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) override
-    {
-        QGraphicsRectItem::mousePressEvent(event);
-    }
+    MyRectangle(int x,int y, QGraphicsPolygonItem* parent = nullptr);
 };
 
 #endif // MYRECTANGLE_H

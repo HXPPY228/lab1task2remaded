@@ -1,7 +1,6 @@
 #include "treugolnik.h"
 
-Treugolnik::Treugolnik(int x, QGraphicsItem* parent)
-    : QGraphicsPolygonItem(parent)
+Treugolnik::Treugolnik(int x, QGraphicsPolygonItem* parent) : Figure(parent)
 {
     QPolygon triangle;
     triangle << QPoint(-x/2, 0.2887*x)

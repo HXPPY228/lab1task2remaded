@@ -21,11 +21,6 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-class Mnogougolnik
-{
-public:
-};
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

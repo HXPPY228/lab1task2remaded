@@ -1,8 +1,15 @@
 #include "myrectangle.h"
 
-MyRectangle::MyRectangle(qreal x,qreal y, qreal width, qreal height) : QGraphicsRectItem(x,y,width,height)
+MyRectangle::MyRectangle(int x, int y, QGraphicsPolygonItem* parent): Figure(parent)
 {
+    QPolygonF kv;
     setBrush(Qt::green);
+
+    kv << QPoint(-x/2, y/2)
+       << QPoint(x/2, y/2)
+       << QPoint(x/2, -y/2)
+       << QPoint(-x/2, -y/2);
+    setPolygon(kv);
     setFlag(QGraphicsItem::ItemIsMovable);
 
     QPolygon rhombus;

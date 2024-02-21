@@ -1,17 +1,13 @@
 #ifndef SHESTIUGOLNIK_H
 #define SHESTIUGOLNIK_H
 
-#include <QGraphicsPolygonItem>
+#include "figure.h"
 #include <QBrush>
 
-class Shestiugolnik : public QGraphicsPolygonItem
+class Shestiugolnik : public Figure
 {
 public:
-    Shestiugolnik(int x, QGraphicsItem* parent = nullptr);
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) override
-    {
-        QGraphicsItem::mousePressEvent(event);
-    }
+    Shestiugolnik(int x, QGraphicsPolygonItem* parent = nullptr);
 };
 
 #endif // SHESTIUGOLNIK_H

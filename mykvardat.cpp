@@ -1,8 +1,15 @@
 #include "mykvadrat.h"
 
-MyKvadrat::MyKvadrat(qreal x, qreal y, qreal sideLength) : QGraphicsRectItem(x,y,sideLength,sideLength)
+MyKvadrat::MyKvadrat(int x, QGraphicsPolygonItem* parent): Figure(parent)
 {
+    QPolygonF kv;
     setBrush(Qt::green);
+
+    kv << QPoint(-x/2, x/2)
+        << QPoint(x/2, x/2)
+        << QPoint(x/2, -x/2)
+        << QPoint(-x/2, -x/2);
+    setPolygon(kv);
     setFlag(QGraphicsItem::ItemIsMovable);
 
     QPolygon rhombus;

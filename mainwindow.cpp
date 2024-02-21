@@ -99,7 +99,7 @@ void MainWindow::on_pushButton_clicked()
         {
             x=dialog.getX();
         }
-        MyKvadrat* kv =new MyKvadrat(-x/2,-x/2,x);
+        MyKvadrat* kv =new MyKvadrat(x);
         kv ->setPos(0,0);
         scene->addItem(kv);
         QString S=QString::number(x*x), P = QString::number(x*4);
@@ -116,7 +116,7 @@ void MainWindow::on_pushButton_clicked()
             x=dialog.getX();
             y=dialog.getY();
         }
-        MyRectangle* rect =new MyRectangle(-x/2,-y/2,x,y);
+        MyRectangle* rect =new MyRectangle(x,y);
         rect ->setPos(0,0);
         scene->addItem(rect);
         QString S=QString::number(x*y), P = QString::number((x+y)*2);

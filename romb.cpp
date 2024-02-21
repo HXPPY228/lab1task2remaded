@@ -1,6 +1,6 @@
 #include "romb.h"
 
-Romb::Romb(int x, int y, QGraphicsPolygonItem* parent) : QGraphicsPolygonItem(parent)
+Romb::Romb(int x, int y, QGraphicsPolygonItem* parent) : Figure(parent)
 {
     QPolygonF romb;
     setBrush(Qt::green);

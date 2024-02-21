@@ -22,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     ellips.h \
+    figure.h \
     inputdialogs.h \
     krug.h \
     mainwindow.h \

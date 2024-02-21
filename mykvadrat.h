@@ -1,17 +1,13 @@
 #ifndef MYKVADRAT_H
 #define MYKVADRAT_H
 
-#include <QGraphicsRectItem>
+#include "figure.h"
 #include <QBrush>
 
-class MyKvadrat: public QGraphicsRectItem
+class MyKvadrat: public Figure
 {
 public:
-    MyKvadrat(qreal x, qreal y, qreal sideLength);
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) override
-    {
-        QGraphicsRectItem::mousePressEvent(event);
-    }
+    MyKvadrat(int x,QGraphicsPolygonItem* parent = nullptr);
 };
 
 #endif // MYKVADRAT_H

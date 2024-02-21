@@ -1,17 +1,14 @@
 #ifndef ROMB_H
 #define ROMB_H
 
-#include <QGraphicsPolygonItem>
+#include "figure.h"
 #include <QBrush>
 
-class Romb : public QGraphicsPolygonItem
+class Romb : public Figure
 {
 public:
     Romb(int x, int y, QGraphicsPolygonItem* parent = nullptr);
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) override
-    {
-        QGraphicsItem::mousePressEvent(event);
-    }
 };
+
 
 #endif // ROMB_H

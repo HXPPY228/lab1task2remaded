@@ -1,6 +1,6 @@
 #include "shestiugolnik.h"
 
-Shestiugolnik::Shestiugolnik(int x, QGraphicsItem* parent): QGraphicsPolygonItem(parent)
+Shestiugolnik::Shestiugolnik(int x, QGraphicsPolygonItem* parent): Figure(parent)
 {
 
     QPolygonF hex;

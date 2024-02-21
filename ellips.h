@@ -1,17 +1,16 @@
 #ifndef ELLIPS_H
 #define ELLIPS_H
 
-#include <QGraphicsEllipseItem>
+#include "figure.h"
 #include <QBrush>
 
-class Ellips : public QGraphicsEllipseItem
+class Ellips : public Figure
 {
 public:
     Ellips(qreal x,qreal y, qreal diametr1, qreal diametr2);
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) override
-    {
-        QGraphicsItem::mousePressEvent(event);
-    }
+
+private:
+    QGraphicsItemGroup* group;
 };
 
 #endif // ELLIPS_H

@@ -1,17 +1,15 @@
 #ifndef KRUG_H
 #define KRUG_H
 
-#include <QGraphicsEllipseItem>
+#include "figure.h"
 #include <QBrush>
 
-class Krug : public QGraphicsEllipseItem
+class Krug : public Figure
 {
 public:
     Krug(qreal x,qreal y, qreal diametr);
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) override
-    {
-        QGraphicsItem::mousePressEvent(event);
-    }
+private:
+    QGraphicsItemGroup* group;
 };
 
 #endif // KRUG_H
