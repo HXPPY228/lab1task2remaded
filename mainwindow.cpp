@@ -155,21 +155,21 @@ void MainWindow::on_pushButton_clicked()
         {
             Zvezda5* zv =new Zvezda5(x/2,y/2);
             scene->addItem(zv);
-            QString S=QString::number(3.1415*x/2*y/2), P = QString::number(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0)));
+            QString S=QString::number(M_PI * x/2 * x/2 + (M_PI * y /2* y/2 - M_PI * x/2 * x/2) / 3), P = QString::number(x/2 * 5 + y/2 * 5);
             ui->label->setText(S);
             ui->label_4->setText(P);
         } else if (r==6)
         {
             Zvezda6* zv =new Zvezda6(x/2,y/2);
             scene->addItem(zv);
-            QString S=QString::number(3.1415*x/2*y/2), P = QString::number(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0)));
+            QString S=QString::number(M_PI * x/2 * x/2 + (M_PI * y/2 * y/2 - M_PI * x/2 * x/2) / 3), P = QString::number(x/2 * 6 + y/2 * 6);
             ui->label->setText(S);
             ui->label_4->setText(P);
         } else if (r==8)
         {
         Zvezda8* zv =new Zvezda8(x/2,y/2);
         scene->addItem(zv);
-        QString S=QString::number(3.1415*x/2*y/2), P = QString::number(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0)));
+        QString S=QString::number(x*x/2+y), P = QString::number(x * 4 + y * 4);
         ui->label->setText(S);
         ui->label_4->setText(P);
         }
@@ -315,6 +315,15 @@ void MainWindow::on_pushButton_plus_pressed()
             item->setScale(item->scale() + 0.01);
         }
     }
+    QString S=ui->label->text();
+    int s = S.toInt()*1.05+2;
+    QString SS=QString::number(s);
+    ui->label->setText(SS);
+
+    QString Sp=ui->label_4->text();
+    int sp = Sp.toInt()+10;
+    QString SSp=QString::number(sp);
+    ui->label_4->setText(SSp);
     timer7->start(10);
 }
 
@@ -337,6 +346,21 @@ void MainWindow::on_pushButton_minus_pressed()
             }
         }
     }
+    QString S=ui->label->text();
+    int s = S.toInt()/1.05-1;
+    if (s==-1){
+        s=0;
+    }
+    QString SS=QString::number(s);
+    ui->label->setText(SS);
+
+    QString Sp=ui->label_4->text();
+    int sp = Sp.toInt()-10;
+    if (sp<0){
+        sp=0;
+    }
+    QString SSp=QString::number(sp);
+    ui->label_4->setText(SSp);
     timer8->start(10);
 }
 
