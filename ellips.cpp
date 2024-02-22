@@ -14,5 +14,5 @@ Ellips::Ellips(qreal x,qreal y, qreal diametr1, qreal diametr2)
     rhombusItem->setBrush(Qt::red);
 
     group->addToGroup(rhombusItem);
-    ellipse->setFlag(QGraphicsItem::ItemIsMovable);
+    group->setFlag(QGraphicsItem::ItemIsMovable);
 }

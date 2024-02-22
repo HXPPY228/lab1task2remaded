@@ -24,6 +24,30 @@ InputDialog::InputDialog(QWidget *parent) :
     mainLayout->addWidget(button);
 }
 
+InputDialogkrds::InputDialogkrds(QWidget *parent) :
+    QDialog(parent),
+    xInput(new QLineEdit(this)),
+    yInput(new QLineEdit(this))
+{
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+
+    QHBoxLayout *xLayout = new QHBoxLayout;
+    QLabel *xLabel = new QLabel("Введите координату x для перемещения: ", this);
+    xLayout->addWidget(xLabel);
+    xLayout->addWidget(xInput);
+    mainLayout->addLayout(xLayout);
+
+    QHBoxLayout *yLayout = new QHBoxLayout;
+    QLabel *yLabel = new QLabel("Введите координату x для перемещения: ", this);
+    yLayout->addWidget(yLabel);
+    yLayout->addWidget(yInput);
+    mainLayout->addLayout(yLayout);
+
+    QPushButton *button = new QPushButton("OK", this);
+    connect(button, SIGNAL(clicked()), this, SLOT(accept()));
+    mainLayout->addWidget(button);
+}
+
 InputDialogzv::InputDialogzv(QWidget *parent) :
     QDialog(parent),
     xInput(new QLineEdit(this)),
@@ -102,6 +126,16 @@ int InputDialog::getX()
 }
 
 int InputDialog::getY()
+{
+    return yInput->text().toInt();
+}
+
+int InputDialogkrds::getX()
+{
+    return xInput->text().toInt();
+}
+
+int InputDialogkrds::getY()
 {
     return yInput->text().toInt();
 }

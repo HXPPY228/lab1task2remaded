@@ -10,6 +10,11 @@
     <height>912</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -342,6 +347,24 @@
      <string>-</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_koords">
+    <property name="geometry">
+     <rect>
+      <x>1006</x>
+      <y>460</y>
+      <width>170</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Изменение координат</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -349,7 +372,7 @@
      <x>0</x>
      <y>0</y>
      <width>1227</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPaint_2_0">

@@ -22,6 +22,20 @@ private:
     QLineEdit *xInput, *yInput;
 };
 
+class InputDialogkrds : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit InputDialogkrds(QWidget *parent = nullptr);
+
+    int getX();
+    int getY();
+
+private:
+    QLineEdit *xInput, *yInput;
+};
+
 class InputDialogzv : public QDialog
 {
     Q_OBJECT

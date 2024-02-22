@@ -346,3 +346,21 @@ void MainWindow::on_pushButton_minus_released()
     timer8->stop();
 }
 
+
+void MainWindow::on_pushButton_koords_clicked()
+{
+    int x=0,y=0;
+    InputDialogkrds dialog(this);
+    if (dialog.exec()== QDialog::Accepted)
+    {
+        x=dialog.getX();
+        y=dialog.getY();
+    }
+    QList<QGraphicsItem*> allItems = scene->items();
+    for (QGraphicsItem* item : allItems){
+        if (item->parentItem() == nullptr) {
+            item->setPos(x,y);
+        }
+    }
+}
+

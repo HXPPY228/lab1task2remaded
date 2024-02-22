@@ -67,6 +67,8 @@ private slots:
 
     void on_pushButton_minus_released();
 
+    void on_pushButton_koords_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
