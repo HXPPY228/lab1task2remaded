@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(scene);
 
 
-    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(on_pushButton_3_pressed()));
@@ -143,7 +143,37 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (ui->comboBox->currentIndex() == 6)
     {
-
+        int x=0,y=0,r=5;
+        InputDialogzv dialog(this);
+        if (dialog.exec()== QDialog::Accepted)
+        {
+            x=dialog.getX();
+            y=dialog.getY();
+            r=dialog.getRadio();
+        }
+        if (r==5)
+        {
+            Zvezda5* zv =new Zvezda5(x/2,y/2);
+            scene->addItem(zv);
+            QString S=QString::number(3.1415*x/2*y/2), P = QString::number(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0)));
+            ui->label->setText(S);
+            ui->label_4->setText(P);
+        } else if (r==6)
+        {
+            Zvezda6* zv =new Zvezda6(x/2,y/2);
+            scene->addItem(zv);
+            QString S=QString::number(3.1415*x/2*y/2), P = QString::number(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0)));
+            ui->label->setText(S);
+            ui->label_4->setText(P);
+        } else if (r==8)
+        {
+        Zvezda8* zv =new Zvezda8(x/2,y/2);
+        scene->addItem(zv);
+        QString S=QString::number(3.1415*x/2*y/2), P = QString::number(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0)));
+        ui->label->setText(S);
+        ui->label_4->setText(P);
+        }
+        ui->label_5->setText("Центр масс помечен красной точкой.");
     }
     else if (ui->comboBox->currentIndex() == 7)
     {
@@ -302,6 +332,9 @@ void MainWindow::on_pushButton_minus_pressed()
         if (item->parentItem() == nullptr) {
 
             item->setScale(item->scale() - 0.01);
+            if (item->scale()<0){
+                item->setScale(0);
+            }
         }
     }
     timer8->start(10);

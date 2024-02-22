@@ -18,7 +18,8 @@ SOURCES += \
     myrectangle.cpp \
     romb.cpp \
     shestiugolnik.cpp \
-    treugolnik.cpp
+    treugolnik.cpp \
+    zvezda.cpp
 
 HEADERS += \
     ellips.h \
@@ -30,7 +31,8 @@ HEADERS += \
     myrectangle.h \
     romb.h \
     shestiugolnik.h \
-    treugolnik.h
+    treugolnik.h \
+    zvezda.h
 
 FORMS += \
     mainwindow.ui

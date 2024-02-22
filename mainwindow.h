@@ -14,6 +14,7 @@
 #include "romb.h"
 #include "shestiugolnik.h"
 #include "ellips.h"
+#include "zvezda.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

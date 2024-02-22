@@ -24,6 +24,37 @@ InputDialog::InputDialog(QWidget *parent) :
     mainLayout->addWidget(button);
 }
 
+InputDialogzv::InputDialogzv(QWidget *parent) :
+    QDialog(parent),
+    xInput(new QLineEdit(this)),
+    yInput(new QLineEdit(this)),
+    radioButton5(new QRadioButton("5", this)),
+    radioButton6(new QRadioButton("6", this)),
+    radioButton8(new QRadioButton("8", this))
+{
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+
+    QHBoxLayout *xLayout = new QHBoxLayout;
+    QLabel *xLabel = new QLabel("Введите значение большего диаметра в пикселях: ", this);
+    xLayout->addWidget(xLabel);
+    xLayout->addWidget(xInput);
+    mainLayout->addLayout(xLayout);
+
+    QHBoxLayout *yLayout = new QHBoxLayout;
+    QLabel *yLabel = new QLabel("Введите значение меньшего диаметра в пикселях: ", this);
+    yLayout->addWidget(yLabel);
+    yLayout->addWidget(yInput);
+    mainLayout->addLayout(yLayout);
+
+    mainLayout->addWidget(radioButton5);
+    mainLayout->addWidget(radioButton6);
+    mainLayout->addWidget(radioButton8);
+
+    QPushButton *button = new QPushButton("OK", this);
+    connect(button, SIGNAL(clicked()), this, SLOT(accept()));
+    mainLayout->addWidget(button);
+}
+
 InputDialogrb::InputDialogrb(QWidget *parent) :
     QDialog(parent),
     xInput(new QLineEdit(this)),
@@ -83,6 +114,27 @@ int InputDialogrb::getX()
 int InputDialogrb::getY()
 {
     return yInput->text().toInt();
+}
+
+int InputDialogzv::getX()
+{
+    return xInput->text().toInt();
+}
+
+int InputDialogzv::getY()
+{
+    return yInput->text().toInt();
+}
+
+int InputDialogzv::getRadio(){
+    if (radioButton5->isChecked()) {
+        return 5;
+    } else if (radioButton6->isChecked()) {
+        return 6;
+    } else if (radioButton8->isChecked()) {
+        return 8;
+    }
+    return 5;
 }
 
 int InputDialogkv::getX()

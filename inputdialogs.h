@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QRadioButton>
 
 class InputDialog : public QDialog
 {
@@ -19,6 +20,22 @@ public:
 
 private:
     QLineEdit *xInput, *yInput;
+};
+
+class InputDialogzv : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit InputDialogzv(QWidget *parent = nullptr);
+
+    int getX();
+    int getY();
+    int getRadio();
+
+private:
+    QLineEdit *xInput, *yInput;
+    QRadioButton *radioButton5,*radioButton6,*radioButton8;
 };
 
 class InputDialogrb : public QDialog
