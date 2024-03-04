@@ -10,7 +10,7 @@ Ellips::Ellips(qreal x,qreal y, qreal diametr1, qreal diametr2)
 
     QPolygon rhombus;
     rhombus << QPoint(2,0) << QPoint(0,2) << QPoint(-2,0)<< QPoint(0,-2);
-    QGraphicsPolygonItem *rhombusItem = new QGraphicsPolygonItem(rhombus);
+    QGraphicsPolygonItem *rhombusItem = new QGraphicsPolygonItem(rhombus, this);
     rhombusItem->setBrush(Qt::red);
 
     group->addToGroup(rhombusItem);

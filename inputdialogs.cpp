@@ -38,7 +38,7 @@ InputDialogkrds::InputDialogkrds(QWidget *parent) :
     mainLayout->addLayout(xLayout);
 
     QHBoxLayout *yLayout = new QHBoxLayout;
-    QLabel *yLabel = new QLabel("Введите координату x для перемещения: ", this);
+    QLabel *yLabel = new QLabel("Введите координату y для перемещения: ", this);
     yLayout->addWidget(yLabel);
     yLayout->addWidget(yInput);
     mainLayout->addLayout(yLayout);
@@ -122,42 +122,42 @@ InputDialogkv::InputDialogkv(QWidget *parent) :
 
 int InputDialog::getX()
 {
-    return xInput->text().toInt();
+    return xInput->text().toLongLong();
 }
 
 int InputDialog::getY()
 {
-    return yInput->text().toInt();
+    return yInput->text().toLongLong();
 }
 
 int InputDialogkrds::getX()
 {
-    return xInput->text().toInt();
+    return xInput->text().toLongLong();
 }
 
 int InputDialogkrds::getY()
 {
-    return yInput->text().toInt();
+    return yInput->text().toLongLong();
 }
 
 int InputDialogrb::getX()
 {
-    return xInput->text().toInt();
+    return xInput->text().toLongLong();
 }
 
 int InputDialogrb::getY()
 {
-    return yInput->text().toInt();
+    return yInput->text().toLongLong();
 }
 
 int InputDialogzv::getX()
 {
-    return xInput->text().toInt();
+    return xInput->text().toLongLong();
 }
 
 int InputDialogzv::getY()
 {
-    return yInput->text().toInt();
+    return yInput->text().toLongLong();
 }
 
 int InputDialogzv::getRadio(){
@@ -173,5 +173,5 @@ int InputDialogzv::getRadio(){
 
 int InputDialogkv::getX()
 {
-    return xInput->text().toInt();
+    return xInput->text().toLongLong();
 }

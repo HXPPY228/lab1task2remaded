@@ -47,7 +47,7 @@ void MainWindow::on_pushButton_clicked()
     //scene->clear();
     if (ui->comboBox->currentIndex() == 0)
     {
-        int x=0;
+        long long x=0;
         InputDialogkv dialog(this);
         if (dialog.exec()== QDialog::Accepted)
         {
@@ -64,23 +64,23 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (ui->comboBox->currentIndex() == 1)
     {
-        int x=0;
+        long long x=0;
         InputDialogkv dialog(this);
         if (dialog.exec()== QDialog::Accepted)
         {
             x=dialog.getX();
         }
-        Krug* kv =new Krug(-x/2,-x/2,x);
+        Krug* kv =new Krug(0,0,x);
         kv ->setPos(0,0);
         scene->addItem(kv);
-        QString S=QString::number(3.1415*x*x/4), P = QString::number(3.1415*x);
+        QString S=QString::number((unsigned long long)(3.1415*x*x/4)), P = QString::number((unsigned long long)(3.1415*x));
         ui->label->setText(S);
         ui->label_4->setText(P);
         ui->label_5->setText("Центр масс помечен красной точкой.");
     }
     else if (ui->comboBox->currentIndex() == 2)
     {
-        int x=0,y=0;
+        long long x=0,y=0;
         InputDialogrb dialog(this);
         if (dialog.exec()== QDialog::Accepted)
         {
@@ -97,7 +97,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (ui->comboBox->currentIndex() == 3)
     {
-        int x=0;
+        long long x=0;
         InputDialogkv dialog(this);
         if (dialog.exec()== QDialog::Accepted)
         {
@@ -112,7 +112,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (ui->comboBox->currentIndex() == 4)
     {
-        int x=0,y=0;
+        long long x=0,y=0;
         InputDialog dialog(this);
         if (dialog.exec()== QDialog::Accepted)
         {
@@ -128,7 +128,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (ui->comboBox->currentIndex() == 5)
     {
-        int x=0;
+        long long x=0;
         InputDialogkv dialog(this);
         if (dialog.exec()== QDialog::Accepted)
         {
@@ -143,7 +143,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (ui->comboBox->currentIndex() == 6)
     {
-        int x=0,y=0,r=5;
+        long long x=0,y=0,r=5;
         InputDialogzv dialog(this);
         if (dialog.exec()== QDialog::Accepted)
         {
@@ -177,7 +177,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if (ui->comboBox->currentIndex() == 7)
     {
-        int x=0,y=0;
+        long long x=0,y=0;
         InputDialogrb dialog(this);
         if (dialog.exec()== QDialog::Accepted)
         {
@@ -316,12 +316,12 @@ void MainWindow::on_pushButton_plus_pressed()
         }
     }
     QString S=ui->label->text();
-    int s = S.toInt()*1.05+2;
+    int s = S.toULongLong()*1.05+2;
     QString SS=QString::number(s);
     ui->label->setText(SS);
 
     QString Sp=ui->label_4->text();
-    int sp = Sp.toInt()+10;
+    int sp = Sp.toULongLong()+10;
     QString SSp=QString::number(sp);
     ui->label_4->setText(SSp);
     timer7->start(10);
@@ -347,7 +347,7 @@ void MainWindow::on_pushButton_minus_pressed()
         }
     }
     QString S=ui->label->text();
-    int s = S.toInt()/1.05-1;
+    int s = S.toLongLong()/1.05-1;
     if (s==-1){
         s=0;
     }
@@ -355,7 +355,7 @@ void MainWindow::on_pushButton_minus_pressed()
     ui->label->setText(SS);
 
     QString Sp=ui->label_4->text();
-    int sp = Sp.toInt()-10;
+    int sp = Sp.toLongLong()-11;
     if (sp<0){
         sp=0;
     }
