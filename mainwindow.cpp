@@ -309,6 +309,9 @@ void MainWindow::on_pushButton_vpravo_released()
 void MainWindow::on_pushButton_plus_pressed()
 {
     QList<QGraphicsItem*> allItems = scene->items();
+    if (allItems.isEmpty()) {
+        return;
+    }
     for (QGraphicsItem* item : allItems){
         if (item->parentItem() == nullptr) {
 
@@ -316,7 +319,7 @@ void MainWindow::on_pushButton_plus_pressed()
         }
     }
     QString S=ui->label->text();
-    int s = S.toULongLong()*1.05+2;
+    int s = S.toULongLong()*1.03+2;
     QString SS=QString::number(s);
     ui->label->setText(SS);
 
@@ -337,6 +340,9 @@ void MainWindow::on_pushButton_plus_released()
 void MainWindow::on_pushButton_minus_pressed()
 {
     QList<QGraphicsItem*> allItems = scene->items();
+    if (allItems.isEmpty()) {
+        return;
+    }
     for (QGraphicsItem* item : allItems){
         if (item->parentItem() == nullptr) {
 

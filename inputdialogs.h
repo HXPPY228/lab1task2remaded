@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QSpinBox>
 
 class InputDialog : public QDialog
 {
@@ -19,12 +20,12 @@ public:
     int getY();
 
 private:
-    QLineEdit *xInput, *yInput;
+    QSpinBox *xInput, *yInput;
 };
 
 class InputDialogkrds : public QDialog
 {
-    Q_OBJECT
+    Q_OBJECT // ya gey
 
 public:
     explicit InputDialogkrds(QWidget *parent = nullptr);
@@ -48,7 +49,7 @@ public:
     int getRadio();
 
 private:
-    QLineEdit *xInput, *yInput;
+    QSpinBox *xInput, *yInput;
     QRadioButton *radioButton5,*radioButton6,*radioButton8;
 };
 
@@ -63,7 +64,7 @@ public:
     int getY();
 
 private:
-    QLineEdit *xInput, *yInput;
+    QSpinBox *xInput, *yInput;
 };
 
 class InputDialogkv : public QDialog
@@ -76,7 +77,7 @@ public:
     int getX();
 
 private:
-    QLineEdit *xInput;
+    QSpinBox *xInput;
 };
 
 

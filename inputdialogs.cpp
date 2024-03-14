@@ -2,9 +2,11 @@
 
 InputDialog::InputDialog(QWidget *parent) :
     QDialog(parent),
-    xInput(new QLineEdit(this)),
-    yInput(new QLineEdit(this))
+    xInput(new QSpinBox(this)),
+    yInput(new QSpinBox(this))
 {
+    xInput->setMaximum(999);
+    yInput->setMaximum(999);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QHBoxLayout *xLayout = new QHBoxLayout;
@@ -23,6 +25,7 @@ InputDialog::InputDialog(QWidget *parent) :
     connect(button, SIGNAL(clicked()), this, SLOT(accept()));
     mainLayout->addWidget(button);
 }
+
 
 InputDialogkrds::InputDialogkrds(QWidget *parent) :
     QDialog(parent),
@@ -50,12 +53,14 @@ InputDialogkrds::InputDialogkrds(QWidget *parent) :
 
 InputDialogzv::InputDialogzv(QWidget *parent) :
     QDialog(parent),
-    xInput(new QLineEdit(this)),
-    yInput(new QLineEdit(this)),
+    xInput(new QSpinBox(this)),
+    yInput(new QSpinBox(this)),
     radioButton5(new QRadioButton("5", this)),
     radioButton6(new QRadioButton("6", this)),
     radioButton8(new QRadioButton("8", this))
 {
+        xInput->setMaximum(999);
+        yInput->setMaximum(999);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QHBoxLayout *xLayout = new QHBoxLayout;
@@ -81,9 +86,11 @@ InputDialogzv::InputDialogzv(QWidget *parent) :
 
 InputDialogrb::InputDialogrb(QWidget *parent) :
     QDialog(parent),
-    xInput(new QLineEdit(this)),
-    yInput(new QLineEdit(this))
+    xInput(new QSpinBox(this)),
+    yInput(new QSpinBox(this))
 {
+    xInput->setMaximum(999);
+    yInput->setMaximum(999);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QHBoxLayout *xLayout = new QHBoxLayout;
@@ -105,8 +112,9 @@ InputDialogrb::InputDialogrb(QWidget *parent) :
 
 InputDialogkv::InputDialogkv(QWidget *parent) :
     QDialog(parent),
-    xInput(new QLineEdit(this))
+    xInput(new QSpinBox(this))
 {
+        xInput->setMaximum(999);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QHBoxLayout *xLayout = new QHBoxLayout;
