@@ -1,4 +1,5 @@
 #include "treugolnik.h"
+#include <QPainter>
 
 Treugolnik::Treugolnik(int x, QGraphicsPolygonItem* parent) : Figure(parent)
 {
@@ -16,3 +17,22 @@ Treugolnik::Treugolnik(int x, QGraphicsPolygonItem* parent) : Figure(parent)
     rhombusItem->setBrush(Qt::red);
     rhombusItem->setFlag(QGraphicsItem::ItemIsMovable);
 }
+
+void TreugolnikDraw::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    painter->setPen(QPen(Qt::black, 3));
+    painter->setBrush(QBrush(Qt::blue));
+
+    QPolygonF polygon;
+
+    polygon << QPointF(startPoint().x() + (endPoint().x() > startPoint().x() ? + 1 : - 1)*
+                                              abs((endPoint().x() - startPoint().x())/2), startPoint().y())
+            << QPointF((endPoint().x() > startPoint().x()) ? endPoint().x() : startPoint().x(), endPoint().y())
+            << QPointF((endPoint().x() > startPoint().x()) ? startPoint().x() : endPoint().x(), endPoint().y());
+
+    painter->drawPolygon(polygon);
+
+    Q_UNUSED(option)
+    Q_UNUSED(widget)
+}
+

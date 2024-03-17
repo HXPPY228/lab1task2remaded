@@ -1,4 +1,5 @@
 #include "mykvadrat.h"
+#include <QPainter>
 
 MyKvadrat::MyKvadrat(int x, QGraphicsPolygonItem* parent): Figure(parent)
 {
@@ -17,4 +18,20 @@ MyKvadrat::MyKvadrat(int x, QGraphicsPolygonItem* parent): Figure(parent)
     QGraphicsPolygonItem *rhombusItem = new QGraphicsPolygonItem(rhombus, this);
     rhombusItem->setBrush(Qt::red);
     rhombusItem->setFlag(QGraphicsItem::ItemIsMovable);
+}
+
+void KvadratDraw1::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    painter->setPen(QPen(Qt::black, 3));
+    painter->setBrush(QBrush(Qt::blue));
+
+    int sv = endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x();
+    int ss = endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y();
+    int min =std::min(qAbs(endPoint().x()-startPoint().x()),qAbs(endPoint().y()-startPoint().y()));
+    QRectF rect (sv,ss,min, min);
+
+    painter->drawRect(rect);
+
+    Q_UNUSED(option)
+    Q_UNUSED(widget)
 }

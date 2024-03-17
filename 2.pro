@@ -10,12 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     ellips.cpp \
+    figuredraw.cpp \
     inputdialogs.cpp \
     krug.cpp \
     main.cpp \
     mainwindow.cpp \
-    mykvardat.cpp \
+    mykvadrat.cpp \
     myrectangle.cpp \
+    paintscene.cpp \
     romb.cpp \
     shestiugolnik.cpp \
     treugolnik.cpp \
@@ -29,6 +31,7 @@ HEADERS += \
     mainwindow.h \
     mykvadrat.h \
     myrectangle.h \
+    paintscene.h \
     romb.h \
     shestiugolnik.h \
     treugolnik.h \

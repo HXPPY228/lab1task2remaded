@@ -1,22 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    scene = new QGraphicsScene(this);
-
+    scene = new PaintScene();   // Инициализируем графическую сцену
+    ui->graphicsView->setScene(scene);
     QPixmap pixmap("/home/hxppy/Pictures/1646165847_1-abrakadabra-fun-p-list-v-kletku-na-prozrachnom-fone-1.jpg");
     scene->setBackgroundBrush(pixmap);
 
-    ui->graphicsView->setScene(scene);
-
-
-    //ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(on_pushButton_3_pressed()));
@@ -34,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer7, SIGNAL(timeout()), this, SLOT(on_pushButton_plus_pressed()));
     timer8 = new QTimer(this);
     connect(timer8, SIGNAL(timeout()), this, SLOT(on_pushButton_minus_pressed()));
+
 }
 
 MainWindow::~MainWindow()
@@ -54,10 +51,9 @@ void MainWindow::on_pushButton_clicked()
             x=dialog.getX();
         }
         Treugolnik* triangle = new Treugolnik(x);
-        triangle->setPos(0, x*0.866);
 
         scene->addItem(triangle);
-        QString S=QString::number(0.433*x*x), P = QString::number(3*x);
+        QString S=QString::number((unsigned long long)(0.433*x*x)), P = QString::number(3*x);
         ui->label->setText(S);
         ui->label_4->setText(P);
         ui->label_5->setText("Центр масс помечен красной точкой.");
@@ -71,7 +67,6 @@ void MainWindow::on_pushButton_clicked()
             x=dialog.getX();
         }
         Krug* kv =new Krug(0,0,x);
-        kv ->setPos(0,0);
         scene->addItem(kv);
         QString S=QString::number((unsigned long long)(3.1415*x*x/4)), P = QString::number((unsigned long long)(3.1415*x));
         ui->label->setText(S);
@@ -88,9 +83,8 @@ void MainWindow::on_pushButton_clicked()
             y=dialog.getY();
         }
         Romb* romb =new Romb(y,x);
-        romb ->setPos(0,0);
         scene->addItem(romb);
-        QString S=QString::number(x*y/2), P = QString::number(sqrt(x*x+y*y)*2);
+        QString S=QString::number((unsigned long long)(x*y/2)), P = QString::number((unsigned long long)(sqrt(x*x+y*y)*2));
         ui->label->setText(S);
         ui->label_4->setText(P);
         ui->label_5->setText("Центр масс помечен красной точкой.");
@@ -136,7 +130,7 @@ void MainWindow::on_pushButton_clicked()
         }
         Shestiugolnik* hex =new Shestiugolnik(x);
         scene->addItem(hex);
-        QString S=QString::number(2.598*x*x), P = QString::number(x*6);
+        QString S=QString::number((unsigned long long)(2.598*x*x)), P = QString::number(x*6);
         ui->label->setText(S);
         ui->label_4->setText(P);
         ui->label_5->setText("Центр масс помечен красной точкой.");
@@ -155,21 +149,21 @@ void MainWindow::on_pushButton_clicked()
         {
             Zvezda5* zv =new Zvezda5(x/2,y/2);
             scene->addItem(zv);
-            QString S=QString::number(M_PI * x/2 * x/2 + (M_PI * y /2* y/2 - M_PI * x/2 * x/2) / 3), P = QString::number(x/2 * 5 + y/2 * 5);
+            QString S=QString::number((unsigned long long)(M_PI * x/2 * x/2 + (M_PI * y /2* y/2 - M_PI * x/2 * x/2) / 3)), P = QString::number((unsigned long long)(x/2 * 5 + y/2 * 5));
             ui->label->setText(S);
             ui->label_4->setText(P);
         } else if (r==6)
         {
             Zvezda6* zv =new Zvezda6(x/2,y/2);
             scene->addItem(zv);
-            QString S=QString::number(M_PI * x/2 * x/2 + (M_PI * y/2 * y/2 - M_PI * x/2 * x/2) / 3), P = QString::number(x/2 * 6 + y/2 * 6);
+            QString S=QString::number((unsigned long long)(M_PI * x/2 * x/2 + (M_PI * y/2 * y/2 - M_PI * x/2 * x/2) / 3)), P = QString::number((unsigned long long)(x/2 * 6 + y/2 * 6));
             ui->label->setText(S);
             ui->label_4->setText(P);
         } else if (r==8)
         {
         Zvezda8* zv =new Zvezda8(x/2,y/2);
         scene->addItem(zv);
-        QString S=QString::number(x*x/2+y), P = QString::number(x * 4 + y * 4);
+            QString S=QString::number((unsigned long long)(x*x/2+y)), P = QString::number(x * 4 + y * 4);
         ui->label->setText(S);
         ui->label_4->setText(P);
         }
@@ -186,7 +180,7 @@ void MainWindow::on_pushButton_clicked()
         }
         Ellips* el =new Ellips(-y/2,-x/2,y,x);
         scene->addItem(el);
-        QString S=QString::number(3.1415*x/2*y/2), P = QString::number(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0)));
+        QString S=QString::number((unsigned long long)(3.1415*x/2*y/2)), P = QString::number((unsigned long long)(2 * 3.1415 * sqrt((x/2 * x/2 + y/2 * y/2) / (2 * 1.0))));
         ui->label->setText(S);
         ui->label_4->setText(P);
         ui->label_5->setText("Центр масс помечен красной точкой.");
@@ -353,7 +347,7 @@ void MainWindow::on_pushButton_minus_pressed()
         }
     }
     QString S=ui->label->text();
-    int s = S.toLongLong()/1.05-1;
+    int s = S.toLongLong()/1.06-1;
     if (s==-1){
         s=0;
     }
@@ -361,7 +355,7 @@ void MainWindow::on_pushButton_minus_pressed()
     ui->label->setText(SS);
 
     QString Sp=ui->label_4->text();
-    int sp = Sp.toLongLong()-11;
+    int sp = Sp.toLongLong()-17;
     if (sp<0){
         sp=0;
     }
@@ -393,4 +387,25 @@ void MainWindow::on_pushButton_koords_clicked()
         }
     }
 }
+
+
+
+// Ромб
+void MainWindow::on_pushButton_drawRomb_clicked()
+{
+    scene->setTypeFigure(PaintScene::RombType);
+}
+
+// Квадрат
+void MainWindow::on_pushButton_drawKvadrat_clicked()
+{
+    scene->setTypeFigure(PaintScene::SquareType);
+}
+
+// Треугольник
+void MainWindow::on_pushButton_drawTreugolnik_clicked()
+{
+    scene->setTypeFigure(PaintScene::TriangleType);
+}
+
 

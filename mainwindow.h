@@ -15,6 +15,7 @@
 #include "shestiugolnik.h"
 #include "ellips.h"
 #include "zvezda.h"
+#include "paintscene.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -69,9 +70,13 @@ private slots:
 
     void on_pushButton_koords_clicked();
 
+    void on_pushButton_drawRomb_clicked();       // Включаем отрисовку Ромба
+    void on_pushButton_drawKvadrat_clicked();     // Включаем отрисовку Квадрата
+    void on_pushButton_drawTreugolnik_clicked();     // Включаем отрисовку Треугольника
+
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
+    PaintScene *scene;
     QTimer *timer, *timer2, *timer3,*timer4, *timer5, *timer6,*timer7,*timer8;
 };
 

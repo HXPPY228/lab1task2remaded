@@ -25,7 +25,7 @@ private:
 
 class InputDialogkrds : public QDialog
 {
-    Q_OBJECT // ya gey
+    Q_OBJECT
 
 public:
     explicit InputDialogkrds(QWidget *parent = nullptr);
