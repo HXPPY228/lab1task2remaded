@@ -13,4 +13,23 @@ private:
     QGraphicsItemGroup* group;
 };
 
+class EllipseDraw : public FigureDraw
+{
+    Q_OBJECT
+
+public:
+    explicit EllipseDraw(QPointF point, QGraphicsObject *parent = 0) :
+        FigureDraw(point,parent)
+    {
+        Q_UNUSED(point)
+    }
+
+    ~EllipseDraw(){
+
+    };
+
+private:
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+};
+
 #endif // ELLIPS_H

@@ -49,6 +49,9 @@ void RombDraw::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
     painter->drawPolygon(polygon);
 
+    int min =qAbs(endPoint().x()-startPoint().x()), max = qAbs(endPoint().y()-startPoint().y());
+
+    emit coordinatesChanged(min*max/2,(int)(sqrt(min*min+max*max)*2));
     Q_UNUSED(option)
     Q_UNUSED(widget)
 }

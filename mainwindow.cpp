@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timerupd, &QTimer::timeout, this, &MainWindow::sceneupdate);
     timerupd->start(10);
 
+    connect(scene, &PaintScene::coordinatesChanged, this, &MainWindow::updateLabel);
 }
 
 void MainWindow::sceneupdate()
@@ -47,6 +48,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::updateLabel(int x, int y)
+{
+    ui->label->setText(QString::number(x));
+    ui->label_4->setText(QString::number(y));
+}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -317,7 +323,31 @@ void MainWindow::on_pushButton_plus_pressed()
         return;
     }
     for (QGraphicsItem* item : allItems){
-        if (item->parentItem() == nullptr) {
+        FigureDraw* figure = dynamic_cast<FigureDraw*>(item);
+        if (figure) {
+            if(figure->endPoint().x()>=figure->startPoint().x()&&figure->endPoint().y()>=figure->startPoint().y()){
+            QPointF newEndPoint = figure->endPoint() + QPointF(1, 1);
+            QPointF newStartPoint = figure->startPoint() - QPointF(1, 1);
+            figure->setStartPoint(newStartPoint);
+            figure->setEndPoint(newEndPoint);
+            } else if(figure->endPoint().x()<figure->startPoint().x()&&figure->endPoint().y()>=figure->startPoint().y()){
+                QPointF newEndPoint = figure->endPoint() + QPointF(-1, 1);
+                QPointF newStartPoint = figure->startPoint() - QPointF(-1, 1);
+                figure->setStartPoint(newStartPoint);
+                figure->setEndPoint(newEndPoint);
+            } else if(figure->endPoint().x()<figure->startPoint().x()&&figure->endPoint().y()<figure->startPoint().y()){
+                QPointF newEndPoint = figure->endPoint() + QPointF(-1, -1);
+                QPointF newStartPoint = figure->startPoint() - QPointF(-1, -1);
+                figure->setStartPoint(newStartPoint);
+                figure->setEndPoint(newEndPoint);
+            } else if(figure->endPoint().x()>=figure->startPoint().x()&&figure->endPoint().y()<figure->startPoint().y()){
+                QPointF newEndPoint = figure->endPoint() + QPointF(1, -1);
+                QPointF newStartPoint = figure->startPoint() - QPointF(1, -1);
+                figure->setStartPoint(newStartPoint);
+                figure->setEndPoint(newEndPoint);
+            }
+        }
+        else if (item->parentItem() == nullptr) {
 
             item->setScale(item->scale() + 0.01);
         }
@@ -348,7 +378,32 @@ void MainWindow::on_pushButton_minus_pressed()
         return;
     }
     for (QGraphicsItem* item : allItems){
-        if (item->parentItem() == nullptr) {
+        FigureDraw* figure = dynamic_cast<FigureDraw*>(item);
+        if (figure) {
+
+            if(figure->endPoint().x()>=figure->startPoint().x()&&figure->endPoint().y()>=figure->startPoint().y()){
+                QPointF newEndPoint = figure->endPoint() - QPointF(1, 1);
+                QPointF newStartPoint = figure->startPoint() + QPointF(1, 1);
+                figure->setStartPoint(newStartPoint);
+                figure->setEndPoint(newEndPoint);
+            } else if(figure->endPoint().x()<figure->startPoint().x()&&figure->endPoint().y()>=figure->startPoint().y()){
+                QPointF newEndPoint = figure->endPoint() - QPointF(-1, 1);
+                QPointF newStartPoint = figure->startPoint() + QPointF(-1, 1);
+                figure->setStartPoint(newStartPoint);
+                figure->setEndPoint(newEndPoint);
+            } else if(figure->endPoint().x()<figure->startPoint().x()&&figure->endPoint().y()<figure->startPoint().y()){
+                QPointF newEndPoint = figure->endPoint() - QPointF(-1, -1);
+                QPointF newStartPoint = figure->startPoint() + QPointF(-1, -1);
+                figure->setStartPoint(newStartPoint);
+                figure->setEndPoint(newEndPoint);
+            } else if(figure->endPoint().x()>=figure->startPoint().x()&&figure->endPoint().y()<figure->startPoint().y()){
+                QPointF newEndPoint = figure->endPoint() - QPointF(1, -1);
+                QPointF newStartPoint = figure->startPoint() + QPointF(1, -1);
+                figure->setStartPoint(newStartPoint);
+                figure->setEndPoint(newEndPoint);
+            }
+        }
+        else if (item->parentItem() == nullptr) {
 
             item->setScale(item->scale() - 0.01);
             if (item->scale()<0){
@@ -398,21 +453,16 @@ void MainWindow::on_pushButton_koords_clicked()
     }
 }
 
-
-
-// Ромб
 void MainWindow::on_pushButton_drawRomb_clicked()
 {
     scene->setTypeFigure(PaintScene::RombType);
 }
 
-// Квадрат
 void MainWindow::on_pushButton_drawKvadrat_clicked()
 {
     scene->setTypeFigure(PaintScene::SquareType);
 }
 
-// Треугольник
 void MainWindow::on_pushButton_drawTreugolnik_clicked()
 {
     scene->setTypeFigure(PaintScene::TriangleType);
@@ -427,5 +477,21 @@ void MainWindow::on_pushButton_drawKrug_clicked()
 void MainWindow::on_pushButton_drawRect_clicked()
 {
     scene->setTypeFigure(PaintScene::RectType);
+}
+
+
+void MainWindow::on_pushButton_drawEllips_clicked()
+{
+    scene->setTypeFigure(PaintScene::EllipseType);
+}
+
+void MainWindow::on_pushButton_drawHex_clicked()
+{
+    scene->setTypeFigure(PaintScene::HexType);
+}
+
+void MainWindow::on_pushButton_drawZvezda_clicked()
+{
+    scene->setTypeFigure(PaintScene::ZvezdaType);
 }
 

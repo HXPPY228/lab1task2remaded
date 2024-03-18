@@ -32,6 +32,11 @@ void TreugolnikDraw::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
 
     painter->drawPolygon(polygon);
 
+
+    int min =qAbs(endPoint().x()-startPoint().x()), max = qAbs(endPoint().y()-startPoint().y());
+
+    emit coordinatesChanged(min*max/2,(int)(min+sqrt(min*min/4+max*max)*2));
+
     Q_UNUSED(option)
     Q_UNUSED(widget)
 }

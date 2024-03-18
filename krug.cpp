@@ -31,12 +31,23 @@ void KrugDraw::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->setPen(QPen(Qt::black, 3));
     painter->setBrush(brush);
 
-    int sv = endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x();
-    int ss = endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y();
     int min =std::min(qAbs(endPoint().x()-startPoint().x()),qAbs(endPoint().y()-startPoint().y()));
-    QRectF rect (sv,ss,min, min);
+    int x,y;
+    if (startPoint().x() > endPoint().x()){
+        x=startPoint().x()-min;
+    } else {
+        x=startPoint().x();
+    }
+    if (startPoint().y() > endPoint().y()){
+        y=startPoint().y()-min;
+    } else {
+        y=startPoint().y();
+    }
+    QRectF rect (x,y,min, min);
 
     painter->drawEllipse(rect);
+
+    emit coordinatesChanged(3.1415*min*min/4,min*3.1415);
 
     Q_UNUSED(option)
     Q_UNUSED(widget)

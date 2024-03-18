@@ -22,4 +22,17 @@ public:
     Zvezda8(int radius1,int radius2, QGraphicsPolygonItem* parent = nullptr);
 };
 
+class ZvezdaDraw : public FigureDraw
+{
+    Q_OBJECT
+
+public:
+    explicit ZvezdaDraw(QPointF point, QGraphicsObject *parent = 0);
+    ~ZvezdaDraw();
+
+private:
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+};
+
+
 #endif // ZVEZDA_H

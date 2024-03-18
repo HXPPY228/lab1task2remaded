@@ -35,9 +35,9 @@ public:
     void setEndPoint(const QPointF point);
     QRectF boundingRect() const;
 
-
 signals:
     void pointChanged();
+    void coordinatesChanged(int x, int y);
 
 private:
     QPointF m_startPoint;
@@ -45,7 +45,7 @@ private:
 
 
 public slots:
-    void updateRomb();     // Слот обновления области, в которой содержится фигура
+    void updateRomb();
 };
 
 

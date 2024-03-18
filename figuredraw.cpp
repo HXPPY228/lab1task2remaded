@@ -2,7 +2,7 @@
 #include <QPainter>
 
 FigureDraw::FigureDraw(QPointF point, QGraphicsObject *parent) :
-    QGraphicsObject()
+    QGraphicsObject(parent)
 {
     // Устанавливаем стартовую координату для отрисовки фигуры
     this->setStartPoint(mapFromScene(point));

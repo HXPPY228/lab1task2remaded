@@ -1,4 +1,5 @@
 #include "zvezda.h"
+#include <QPainter>
 
 Zvezda5::Zvezda5(int radius1,int radius2, QGraphicsPolygonItem* parent): Figure(parent)
 {
@@ -87,4 +88,43 @@ Zvezda8::Zvezda8(int radius1,int radius2, QGraphicsPolygonItem* parent): Figure(
     QGraphicsPolygonItem *rhombusItem = new QGraphicsPolygonItem(rhombus, this);
     rhombusItem->setBrush(Qt::red);
     rhombusItem->setFlag(QGraphicsItem::ItemIsMovable);
+}
+
+ZvezdaDraw::ZvezdaDraw(QPointF point, QGraphicsObject *parent) :
+    FigureDraw(point,parent)
+{
+    Q_UNUSED(point)
+}
+
+ZvezdaDraw::~ZvezdaDraw()
+{
+
+}
+
+void ZvezdaDraw::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    painter->setPen(QPen(Qt::black, 3));
+    painter->setBrush(QBrush(Qt::blue));
+
+    QPolygonF polygon;
+
+    polygon << QPointF((startPoint().x()+endPoint().x())/2, startPoint().y())
+            << QPointF(startPoint().x()+((endPoint().x()-startPoint().x()))/1.613, startPoint().y()+((endPoint().y()-startPoint().y()))/2.5)
+            << QPointF(endPoint().x(),  startPoint().y()+((endPoint().y()-startPoint().y()))/2.5)
+            << QPointF(startPoint().x()+((endPoint().x()-startPoint().x()))/1.428,startPoint().y()+((endPoint().y()-startPoint().y()))/1.5625)
+            << QPointF(startPoint().x()+((endPoint().x()-startPoint().x()))/1.22,endPoint().y())
+            << QPointF(startPoint().x()+((endPoint().x()-startPoint().x()))/2, startPoint().y()+((endPoint().y()-startPoint().y()))/1.282)
+            << QPointF(startPoint().x()+((endPoint().x()-startPoint().x()))/5.5556,endPoint().y())
+            << QPointF(startPoint().x()+((endPoint().x()-startPoint().x()))/3.125,startPoint().y()+((endPoint().y()-startPoint().y()))/1.5625)
+            << QPointF(startPoint().x(), startPoint().y()+((endPoint().y()-startPoint().y()))/2.5)
+            << QPointF(startPoint().x()+((endPoint().x()-startPoint().x()))/2.6316, startPoint().y()+((endPoint().y()-startPoint().y()))/2.5);
+
+
+    painter->drawPolygon(polygon);
+
+    int min =qAbs(endPoint().x()-startPoint().x()), max = qAbs(endPoint().y()-startPoint().y());
+
+    emit coordinatesChanged(min*max/2.5,4*min+4*max);
+    Q_UNUSED(option)
+    Q_UNUSED(widget)
 }

@@ -25,11 +25,15 @@ public:
         RombType,
         TriangleType,
         CircleType,
-        RectType
+        RectType,
+        EllipseType,
+        ZvezdaType,
+        HexType
     };
 
 signals:
     void typeFigureChanged();               // Сигнал об изменении типа текущей фигуры
+    void coordinatesChanged(int x, int y);
 
 private:
     // Объект для временного хранения рисуемой фигуры

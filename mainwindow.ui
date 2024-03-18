@@ -368,7 +368,7 @@
    <widget class="QPushButton" name="pushButton_drawRomb">
     <property name="geometry">
      <rect>
-      <x>965</x>
+      <x>990</x>
       <y>540</y>
       <width>41</width>
       <height>41</height>
@@ -400,7 +400,7 @@
    <widget class="QPushButton" name="pushButton_drawKvadrat">
     <property name="geometry">
      <rect>
-      <x>1015</x>
+      <x>1040</x>
       <y>540</y>
       <width>41</width>
       <height>41</height>
@@ -419,7 +419,7 @@
    <widget class="QPushButton" name="pushButton_drawTreugolnik">
     <property name="geometry">
      <rect>
-      <x>1065</x>
+      <x>1090</x>
       <y>540</y>
       <width>41</width>
       <height>41</height>
@@ -438,7 +438,7 @@
    <widget class="QPushButton" name="pushButton_drawKrug">
     <property name="geometry">
      <rect>
-      <x>1115</x>
+      <x>1140</x>
       <y>540</y>
       <width>41</width>
       <height>41</height>
@@ -457,8 +457,8 @@
    <widget class="QPushButton" name="pushButton_drawRect">
     <property name="geometry">
      <rect>
-      <x>1165</x>
-      <y>540</y>
+      <x>990</x>
+      <y>590</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -471,6 +471,64 @@
     </property>
     <property name="text">
      <string>▭</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_drawEllips">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>590</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Chandas</family>
+      <pointsize>25</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>⬭</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_drawHex">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>590</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>FreeSans</family>
+      <pointsize>23</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>⬡</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_drawZvezda">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>590</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>FreeSans</family>
+      <pointsize>28</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>☆</string>
     </property>
    </widget>
   </widget>

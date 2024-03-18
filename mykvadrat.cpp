@@ -26,10 +26,21 @@ void KvadratDraw1::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setBrush(QBrush(Qt::blue));
 
     int min =std::min(qAbs(endPoint().x()-startPoint().x()),qAbs(endPoint().y()-startPoint().y()));
-    QRectF rect (endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x(),endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y(),min, min);
+    int x,y;
+    if (startPoint().x() > endPoint().x()){
+        x=startPoint().x()-min;
+    } else {
+        x=startPoint().x();
+    }
+    if (startPoint().y() > endPoint().y()){
+        y=startPoint().y()-min;
+    } else {
+        y=startPoint().y();
+    }
+    QRectF rect (x,y,min, min);
 
     painter->drawRect(rect);
-
+    emit coordinatesChanged(min*min,min*4);
     Q_UNUSED(option)
     Q_UNUSED(widget)
 }

@@ -71,7 +71,9 @@ private slots:
     void on_pushButton_koords_clicked();
 
     void on_pushButton_drawRomb_clicked();
+
     void on_pushButton_drawKvadrat_clicked();
+
     void on_pushButton_drawTreugolnik_clicked();
 
     void on_pushButton_drawKrug_clicked();
@@ -79,6 +81,14 @@ private slots:
     void on_pushButton_drawRect_clicked();
 
     void sceneupdate();
+
+    void updateLabel(int x, int y);
+
+    void on_pushButton_drawEllips_clicked();
+
+    void on_pushButton_drawHex_clicked();
+
+    void on_pushButton_drawZvezda_clicked();
 
 private:
     Ui::MainWindow *ui;
