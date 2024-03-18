@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     scene = new PaintScene();   // Инициализируем графическую сцену
     ui->graphicsView->setScene(scene);
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
     QPixmap pixmap("/home/hxppy/Pictures/1646165847_1-abrakadabra-fun-p-list-v-kletku-na-prozrachnom-fone-1.jpg");
     scene->setBackgroundBrush(pixmap);
 
@@ -30,7 +31,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer7, SIGNAL(timeout()), this, SLOT(on_pushButton_plus_pressed()));
     timer8 = new QTimer(this);
     connect(timer8, SIGNAL(timeout()), this, SLOT(on_pushButton_minus_pressed()));
+    timerupd = new QTimer(this);
+    connect(timerupd, &QTimer::timeout, this, &MainWindow::sceneupdate);
+    timerupd->start(10);
 
+}
+
+void MainWindow::sceneupdate()
+{
+    scene->update();
 }
 
 MainWindow::~MainWindow()
@@ -191,9 +200,10 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     scene->clear();
+    scene->update();
     ui->label->setText("Очищено!");
     ui->label_4->setText("Очищено!");
-    ui->label_5->setText("Очищено!");
+    ui->label_5->setText("");
 }
 
 
@@ -408,4 +418,14 @@ void MainWindow::on_pushButton_drawTreugolnik_clicked()
     scene->setTypeFigure(PaintScene::TriangleType);
 }
 
+void MainWindow::on_pushButton_drawKrug_clicked()
+{
+    scene->setTypeFigure(PaintScene::CircleType);
+}
+
+
+void MainWindow::on_pushButton_drawRect_clicked()
+{
+    scene->setTypeFigure(PaintScene::RectType);
+}
 

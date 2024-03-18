@@ -2,6 +2,8 @@
 #include "romb.h"
 #include "treugolnik.h"
 #include "mykvadrat.h"
+#include "krug.h"
+#include "myrectangle.h"
 
 PaintScene::PaintScene(QObject *parent) : QGraphicsScene(parent)
 {
@@ -35,10 +37,6 @@ void PaintScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     this->update(QRectF(0,0,this->width(), this->height()));
 }
 
-/* Как только нажали кнопку мыши, создаём фигуру одного из трёх типов
-     * и помещаем её на сцену, сохранив указатель на неё в переменной
-     * tempFigure
-     * */
 void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     switch (m_typeFigure) {
@@ -60,6 +58,18 @@ void PaintScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         tempFigure = item;
         break;
     }
+        case CircleType: {
+        KrugDraw *item = new KrugDraw(event->scenePos());
+        item->setPos(event->pos());
+        tempFigure = item;
+        break;
+    }
+        case RectType: {
+            RectDraw *item = new RectDraw(event->scenePos());
+            item->setPos(event->pos());
+            tempFigure = item;
+            break;
+        }
     default:{
         KvadratDraw1 *item = new KvadratDraw1(event->scenePos());
         item->setPos(event->pos());

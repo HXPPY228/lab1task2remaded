@@ -20,21 +20,19 @@ public:
     int typeFigure() const;                 // Возвращение текущего типа
     void setTypeFigure(const int type);     // Установка текущего типа
 
-    // Перечисление типов используемых фигур
     enum FigureTypes {
         SquareType,
         RombType,
         TriangleType,
-        CircleType
+        CircleType,
+        RectType
     };
 
 signals:
     void typeFigureChanged();               // Сигнал об изменении типа текущей фигуры
 
 private:
-    /* Объект для временного хранения рисуемой фигуры
-         * Является объектом базового класса для всех трёх типов фигур в примере
-         * */
+    // Объект для временного хранения рисуемой фигуры
     FigureDraw *tempFigure;
     int m_typeFigure;   // текущий тип фигуры
 

@@ -1,4 +1,5 @@
 #include "krug.h"
+#include <QPainter>
 
 Krug::Krug(qreal x, qreal y, qreal diameter)
 {
@@ -21,3 +22,23 @@ Krug::Krug(qreal x, qreal y, qreal diameter)
 
     group->setFlag(QGraphicsItem::ItemIsMovable);
 }
+
+void KrugDraw::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    QImage image("/home/hxppy/Pictures/sv.jpg");
+    QBrush brush(image);
+
+    painter->setPen(QPen(Qt::black, 3));
+    painter->setBrush(brush);
+
+    int sv = endPoint().x() > startPoint().x() ? startPoint().x() : endPoint().x();
+    int ss = endPoint().y() > startPoint().y() ? startPoint().y() : endPoint().y();
+    int min =std::min(qAbs(endPoint().x()-startPoint().x()),qAbs(endPoint().y()-startPoint().y()));
+    QRectF rect (sv,ss,min, min);
+
+    painter->drawEllipse(rect);
+
+    Q_UNUSED(option)
+    Q_UNUSED(widget)
+}
+

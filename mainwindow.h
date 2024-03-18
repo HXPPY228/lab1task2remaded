@@ -70,14 +70,20 @@ private slots:
 
     void on_pushButton_koords_clicked();
 
-    void on_pushButton_drawRomb_clicked();       // Включаем отрисовку Ромба
-    void on_pushButton_drawKvadrat_clicked();     // Включаем отрисовку Квадрата
-    void on_pushButton_drawTreugolnik_clicked();     // Включаем отрисовку Треугольника
+    void on_pushButton_drawRomb_clicked();
+    void on_pushButton_drawKvadrat_clicked();
+    void on_pushButton_drawTreugolnik_clicked();
+
+    void on_pushButton_drawKrug_clicked();
+
+    void on_pushButton_drawRect_clicked();
+
+    void sceneupdate();
 
 private:
     Ui::MainWindow *ui;
     PaintScene *scene;
-    QTimer *timer, *timer2, *timer3,*timer4, *timer5, *timer6,*timer7,*timer8;
+    QTimer *timer, *timer2, *timer3,*timer4, *timer5, *timer6,*timer7,*timer8, *timerupd;
 };
 
 #endif // MAINWINDOW_H
