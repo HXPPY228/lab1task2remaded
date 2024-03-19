@@ -248,7 +248,14 @@ void MainWindow::on_pushButton_vverh_pressed()
 {
     QList<QGraphicsItem*> allItems = scene->items();
     for (QGraphicsItem* item : allItems){
-        if (item->parentItem() == nullptr) {
+        FigureDraw* figure = dynamic_cast<FigureDraw*>(item);
+        if (figure) {
+                QPointF newEndPoint = figure->endPoint() + QPointF(0, -1);
+                QPointF newStartPoint = figure->startPoint() + QPointF(0, -1);
+                figure->setStartPoint(newStartPoint);
+                figure->setEndPoint(newEndPoint);
+        }
+        else if (item->parentItem() == nullptr) {
             item->setPos(item->pos().x(),item->pos().y()-1);
         }
     }
@@ -266,7 +273,14 @@ void MainWindow::on_pushButton_vniz_pressed()
 {
     QList<QGraphicsItem*> allItems = scene->items();
     for (QGraphicsItem* item : allItems){
-        if (item->parentItem() == nullptr) {
+        FigureDraw* figure = dynamic_cast<FigureDraw*>(item);
+        if (figure) {
+            QPointF newEndPoint = figure->endPoint() + QPointF(0, 1);
+            QPointF newStartPoint = figure->startPoint() + QPointF(0, 1);
+            figure->setStartPoint(newStartPoint);
+            figure->setEndPoint(newEndPoint);
+        }
+        else if (item->parentItem() == nullptr) {
             item->setPos(item->pos().x(),item->pos().y()+1);
         }
     }
@@ -284,7 +298,14 @@ void MainWindow::on_pushButton_vlevo_pressed()
 {
     QList<QGraphicsItem*> allItems = scene->items();
     for (QGraphicsItem* item : allItems){
-        if (item->parentItem() == nullptr) {
+        FigureDraw* figure = dynamic_cast<FigureDraw*>(item);
+        if (figure) {
+            QPointF newEndPoint = figure->endPoint() + QPointF(-1, 0);
+            QPointF newStartPoint = figure->startPoint() + QPointF(-1, 0);
+            figure->setStartPoint(newStartPoint);
+            figure->setEndPoint(newEndPoint);
+        }
+        else if (item->parentItem() == nullptr) {
             item->setPos(item->pos().x()-1,item->pos().y());
         }
     }
@@ -302,7 +323,14 @@ void MainWindow::on_pushButton_vpravo_pressed()
 {
     QList<QGraphicsItem*> allItems = scene->items();
     for (QGraphicsItem* item : allItems){
-        if (item->parentItem() == nullptr) {
+        FigureDraw* figure = dynamic_cast<FigureDraw*>(item);
+        if (figure) {
+            QPointF newEndPoint = figure->endPoint() + QPointF(1, 0);
+            QPointF newStartPoint = figure->startPoint() + QPointF(1, 0);
+            figure->setStartPoint(newStartPoint);
+            figure->setEndPoint(newEndPoint);
+        }
+        else if (item->parentItem() == nullptr) {
             item->setPos(item->pos().x()+1,item->pos().y());
         }
     }
@@ -420,7 +448,7 @@ void MainWindow::on_pushButton_minus_pressed()
     ui->label->setText(SS);
 
     QString Sp=ui->label_4->text();
-    int sp = Sp.toLongLong()-17;
+    int sp = Sp.toLongLong()-14;
     if (sp<0){
         sp=0;
     }

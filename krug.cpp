@@ -53,3 +53,4 @@ void KrugDraw::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     Q_UNUSED(widget)
 }
 
+
