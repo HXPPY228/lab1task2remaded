@@ -219,6 +219,7 @@ void MainWindow::on_pushButton_3_pressed()
     QList<QGraphicsItem*> allItems = scene->items();
     for (QGraphicsItem* item : allItems){
         item->setRotation(item->rotation()-1);
+
     }
     timer->start(10);
 }
@@ -353,6 +354,7 @@ void MainWindow::on_pushButton_plus_pressed()
     for (QGraphicsItem* item : allItems){
         FigureDraw* figure = dynamic_cast<FigureDraw*>(item);
         if (figure) {
+                item->setRotation(0);
             if(figure->endPoint().x()>=figure->startPoint().x()&&figure->endPoint().y()>=figure->startPoint().y()){
             QPointF newEndPoint = figure->endPoint() + QPointF(1, 1);
             QPointF newStartPoint = figure->startPoint() - QPointF(1, 1);
@@ -408,7 +410,7 @@ void MainWindow::on_pushButton_minus_pressed()
     for (QGraphicsItem* item : allItems){
         FigureDraw* figure = dynamic_cast<FigureDraw*>(item);
         if (figure) {
-
+            item->setRotation(0);
             if(figure->endPoint().x()>=figure->startPoint().x()&&figure->endPoint().y()>=figure->startPoint().y()){
                 QPointF newEndPoint = figure->endPoint() - QPointF(1, 1);
                 QPointF newStartPoint = figure->startPoint() + QPointF(1, 1);
